@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+class solution 
+{
+    public:
+    bool rotatestring(string str1,string str2)
+    {
+        queue<char>q1;
+        queue<char>q2;
+        for(int i=0;i<str1.size();i++)
+        {
+            q1.push(str1[i]);
+        }
+        for(int i=0;i<str2.size();i++)
+        {
+            q2.push(str2[i]);
+        }
+        for(int i=0;i<q2.size();i++)
+        {
+            char ch=q2.front();
+            q2.pop();
+            q2.push(ch);
+            if(q1==q2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+int main()
+{
+    string str1;
+    string str2;
+    cin>>str1>>str2;
+    solution obj;
+    cout<<obj.rotatestring(str1,str2);
+    return 0;
+}
