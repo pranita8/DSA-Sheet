@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+class solution{
+    public:
+int maxsubaarysum(int arr[],int n)
+{
+    int sum=0;
+    int add=INT_MIN;
+    for(int i=0;i<n;i++)
+    {
+        sum=sum+arr[i];
+        if(sum>add)
+        {
+            add=sum;
+
+        }
+        if(sum<0)
+        {
+            sum=0;
+        }
+    }
+    return add;
+}
+};
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    solution obj;
+    cout<<obj.maxsubaarysum(arr,n);
+    return 0;
+}
