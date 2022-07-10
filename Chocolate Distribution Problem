@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int findmindiff(int arr[],int n,int m)
+{
+    int s=0,e=m-1,diff=0,mindiff=INT_MAX;
+    sort(arr,arr+n);
+    while(e<n)
+    {
+        diff=arr[e]-arr[s];
+        if(mindiff>diff)
+        mindiff=diff;
+
+        s++;
+        e++;
+
+    }
+    return mindiff;
+}
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    cout<<findmindiff(arr,n,m);
+    return 0;
+}
