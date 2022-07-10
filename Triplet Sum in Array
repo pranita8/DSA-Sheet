@@ -1,0 +1,56 @@
+#include<bits\stdc++.h>
+using namespace std;
+int tripletsum(int arr[],int n,int x)
+{
+    /*Methhod 1=>TC=O(N^2) SC=>O(N);
+    unordered_set<int>s;
+    int ans=0;
+    for(int i=0;i<n;i++)
+    {
+        int curr=x-arr[i];
+        for(int j=i+1;j<n;j++)
+        {
+            if(s.find(curr-arr[j])!=s.end())
+            {
+                ans=1;
+                break;
+            }
+            s.insert(arr[j]);
+        }
+        
+    }
+    return ans;*/
+    //Method 2 TC=>O(N^2)
+    sort(arr,arr+n);
+    for(int i=0;i<n;i++)
+    {
+        int j=i+1;
+        int k=n-1;
+        while(j<k)
+        {
+            int sum=arr[i]+arr[j]+arr[k];
+            if(sum==x)
+            return 1;
+
+            if(sum<x)
+            j++;
+
+            else
+            k--;
+
+        }
+    }
+    return 0;
+
+}
+int main()
+{
+    int n,x;
+    cin>>n>>x;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+
+    cout<<tripletsum(arr,n,x);
+    return 0;
+}
