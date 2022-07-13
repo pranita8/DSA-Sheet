@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+int ispalindromic(int arr[],int n)
+{
+   string str;
+   for(int i=0;i<n;i++)
+   {
+    str=to_string(arr[i]);
+    int j=0,k=str.length()-1;
+    while(j<k)
+    {
+        if(str[j]!=str[k])
+        {
+            return 0;
+            break;
+        }
+        j++;
+        k--;
+
+    }
+    str.clear();
+   } 
+   return 1;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+
+    cout<<ispalindromic(arr,n);
+    return 0;
+
+}
