@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int rowmax(vector<vector<int>>&arr,int n,int m)
+{
+    int ans=0,maxc=INT_MIN;
+    for(int i=0;i<n;i++)
+    {
+        int count=0;
+        for(int j=0;j<m;j++)
+        {
+            if(arr[i][j]==1)
+            count++;
+            if(maxc<count)
+            {
+                maxc=count;
+                ans=i;
+            }   
+        }
+        
+    }
+    if(maxc==0)
+        return -1;
+      return ans;
+}
+int main()
+{
+    int c,r;
+    cin>>c>>r;
+    vector<vector<int>>arr(r ,vector<int>(c));
+    for(int i=0;i<r;i++)
+    {
+        for(int j=0;j<c;j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+    cout<<rowmax(arr,r,c);
+    return 0;
+}
