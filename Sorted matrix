@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+  vector<vector<int>>sortedmatrix(vector<vector<int>>&mat,int n)
+  {
+    /*Method 1
+    vector<int>temp;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            temp.push_back(mat[i][j]);
+        }
+    }
+    sort(temp.begin(),temp.end());
+    int k=0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            mat[i][j]=temp[k];
+            k++;
+        }
+    }
+    return mat;*/
+
+    /*Method 2--> using priority queue by creating minheap*/
+    priority_queue<int,vector<int>,greater<int>>pq;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            pq.push(mat[i][j]);
+        }
+    }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+           mat[i][j]=pq.top();
+           pq.pop();
+        }
+    }
+    return mat;
+
+  }
+int main()
+{
+    int n;
+    cin>>n;
+    vector<vector<int>>mat(n,vector<int>(n));
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>mat[i][j];
+        }
+    }
+    sortedmatrix(mat,n);
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<mat[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
