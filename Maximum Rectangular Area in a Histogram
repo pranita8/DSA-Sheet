@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>nextsmaller(int arr[],int n)
+{
+    vector<int>ans(n);
+    stack<int>s;
+    for(int i=n-1;i>=0;i--)
+    {
+        int curr=arr[i];
+        while(!s.empty() && arr[s.top()]>=curr)
+        {
+            s.pop();
+        }
+        if(s.empty())
+        ans.push_back(n);
+        else
+        ans.push_back(s.top());
+
+        s.push(i);
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+vector<int>prevsmaller(int arr[],int n)
+{
+    vector<int>ans;
+    stack<int>s;
+    for(int i=0;i<n;i++)
+    {
+        int curr=arr[i];
+        while(!s.empty() && arr[s.top()]>=curr)
+        {
+            s.pop();
+        }
+        if(s.empty())
+        ans.push_back(-1);
+        else
+        ans.push_back(s.top());
+        s.push(i);
+    }
+    return ans;
+}
+int historectarea(int arr[],int n)
+{
+    vector<int>ns=nextsmaller(arr,n);
+    vector<int>ps=prevsmaller(arr,n);
+    int maxans=0;
+    for(int i=0;i<n;i++)
+    {
+        int ans=(ns[i]-ps[i]-1)*arr[i];
+        maxans=max(ans,maxans);
+    }
+    return maxans;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    cout<<historectarea(arr,n);
+    return 0;
+}
