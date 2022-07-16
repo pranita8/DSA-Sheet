@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>nextgreater(int arr[],int n)
+{
+    vector<int>ans(n);
+    stack<int>s;
+    for(int i=n-1;i>=0;i--)
+    {
+        int curr=arr[i];
+        while(!s.empty() && curr>=s.top())
+        {
+            s.pop();
+        }
+        if(s.empty())
+        ans[i]=-1;
+        else
+        ans[i]=s.top();
+        s.push(curr);
+    }
+    return ans;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    vector<int>res=nextgreater(arr,n);
+    for(int i=0;i<n;i++)
+    {
+        cout<<res[i]<<" ";
+    }
+    return 0;
+}
