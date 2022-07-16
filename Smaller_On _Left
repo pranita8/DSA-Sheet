@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>smallerleft(int arr[],int n)
+{
+    /*Method-1 =>usinng stack
+    stack<int>s;
+    vector<int>ans;
+    for(int i=0;i<n;i++)
+    {
+        int curr=arr[i];
+        while(!s.empty() &&curr<=s.top())
+        {
+            s.pop();
+        }
+        if(s.empty())
+        ans[i]=-1;
+        else
+        ans[i]=s.top();
+        s.push(curr);
+    }
+    return ans;*/
+    //Method 2=> Using set by finding out lowerbound of  the set
+    vector<int>ans;
+    set<int>s;
+    for(int i=0;i<n;i++)
+    {
+        auto index=s.lower_bound(arr[i]);
+        if(index==s.begin())
+        ans.push_back(-1);
+        else
+        {
+            index--;
+            ans.push_back(*index);
+        }
+        s.insert(arr[i]);
+    }
+    return ans;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+
+    vector<int>res=smallerleft(arr,n);
+    for(int i=0;i<n;i++)
+    {
+        cout<<res[i]<<" ";
+    }
+    return 0;
+}
