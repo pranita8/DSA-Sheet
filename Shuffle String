@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+string shuffelstring(vector<int>&index,string s)
+{
+    string str=s;
+    for(int i=0;i<index.size();i++)
+    {
+        char ch=s[i];
+        int curr=index[i];
+        str[curr]=ch;
+    }
+    return str;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>index(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>index[i];
+    }
+    string s;
+    cin>>s;
+    cout<<shuffelstring(index,s);
+    return 0;
+}
