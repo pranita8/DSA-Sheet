@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool checkrotate(string s1,string s2)
+{
+    queue<char>q1;
+    queue<char>q2;
+    for(int i=0;i<s1.size();i++)
+    {
+        q1.push(s1[i]);
+    }
+    for(int i=0;i<s2.size();i++)
+    {
+        q2.push(s2[i]);
+    }
+    for(int i=0;i<q2.size();i++)
+    {
+        if(q1==q2)
+        return true;
+        char ch=q2.front();
+        q2.pop();
+        q2.push(ch);
+    }
+    return false;
+}
+int main()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    cout<<checkrotate(s1,s2);
+    return 0;
+}
