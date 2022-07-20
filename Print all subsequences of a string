@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+void subsequences(string ip,string op)
+{
+    if(ip.length()==0)
+    {
+       cout<<op<<" ";
+       return;
+    }
+    subsequences(ip.substr(1),op);
+    subsequences(ip.substr(1),op+ip[0]);
+    
+}
+int main()
+{
+    string ip ,op=" ";
+    cin>>ip;
+    subsequences(ip,op);
+    return 0;
+   
+}
